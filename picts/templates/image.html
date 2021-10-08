@@ -1,0 +1,26 @@
+{%extends 'base.html'%}
+{% block content %}
+{{ block.super}}
+{% load bootstrap5 %}
+<br>
+<br>
+<div class="container">
+
+  <div class="card-columns">
+
+    <div class="card border-secondary">
+      <img class="card-img-top" class="img-responsive" src="{{image.gallery_image.url}}" data-target="#extraModal{{image.id}}" data-toggle="modal" size="100px200">
+    </div>
+    <div class="card-body">
+      <p>About: {{image.description}}</p>
+      <p>Location: {{image.location}}</p>
+
+      {% for category in image.categories.all %}
+      <p> Category: {{ category.name }} </p>
+      {% endfor %}
+    </div>
+
+  </div>
+
+</div>
+{% endblock %}

@@ -1,27 +1,41 @@
+from django.http  import HttpResponse,Http404,HttpResponseRedirect
 from django.shortcuts import render
-from .models import Image, Location
+from .models import Image, Location,categories
 
 # Create your views here.
-def index(request):
+
+def home(request):
     images = Image.objects.all()
-    locations = Location.get_locations()
-    print(locations)
-    return render(request, 'pictures/index.html', {'images': images[::-1], 'locations': locations})
+    location = Location.objects.all()
+    category = categories.objects.all()
 
-# location request image
-def image_location(request, location):
-    images = Image.filter_by_location(location)
-    print(images)
-    return render(request, 'pictures/location.html', {'location_images': images})
+    if 'location' in request.GET and request.GET['location']:
+        name = request.GET.get('location')
+        images = Image.view_location(name)
 
-# search results
+    elif 'category' in request.GET and request.GET['category']:
+        cat = request.GET.get('categories')
+        images = Image.view_category(cat)
+        return render(request, 'all-images.html', {"name":name,"images":images,"cat":cat })
+
+    return render(request,"all-images.html",{"images":images,"location":location,"category":category})
+
 def search_results(request):
-    if 'imagesearch' in request.GET and request.GET["imagesearch"]:
-        category = request.GET.get("imagesearch")
-        searched_images = Image.search_by_category(category)
-        message = f"{category}"
-        print(searched_images)
-        return render(request, 'pictures/search_results.html', {"message": message, "images": searched_images})
+
+    if 'categories' in request.GET and request.GET['categories']:
+        search_images = request.GET.get("categories")
+        searched_images = Image.search_by_category(search_images)
+        message = f"{search_images}"
+
+        return render(request, 'search.html',{"message":message,"images": searched_images})
+
     else:
-        message = "You haven't searched for any image category"
-        return render(request, 'pictures/search_results.html', {"message": message})
+        message = "You haven't searched for any image"
+        return render(request, 'search.html',{"message":message})
+
+def get_image_by_id(request,image_id):
+    try:
+        image = Image.objects.get(id = image_id)
+    except:
+        raise Http404()
+    return render(request,"image.html", {"image":image})

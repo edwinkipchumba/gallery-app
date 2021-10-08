@@ -1,0 +1,33 @@
+{%extends 'base.html'%}
+{% block content %}
+<br>
+<div class="container">
+
+  <div class="row">
+
+    {% if images%}
+    <h2 class="capitalize">{{ images|length }} {{message}} images found...</h2>
+    {% else %}
+    <h2> No images found {{message}}</h2>
+    {% endif %}
+
+  </div>
+  <hr>
+  <div class="row">
+    <div class="container">
+      <div class="card-columns">
+        {% if images %}
+        {% for image in images %}
+        <div class="card border-secondary">
+          <div class="card-header"><h4>{{image.name}}</h4></div>
+          <img class="card-img-top" class="img-responsive" src="{{image.gallery_image.url}}" size="100px200">
+        </div>
+
+        {%endfor%}
+      </div>
+
+    </div>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

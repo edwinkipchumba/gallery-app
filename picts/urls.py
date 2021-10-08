@@ -3,12 +3,11 @@ from . import views
 from django.conf import settings
 from django.conf.urls.static import static
 
-app_name = 'picts'
 
 urlpatterns = [
-    url(r'^$', views.index, name='index'),
-    url(r'^search/', views.search_results, name='search'),
-    url(r'^location/(?P<location>\w+)/', views.image_location, name='location'),
+    url(r'^$', views.home,name='home'),
+    url(r'^search/', views.search_results, name='search_results'),
+    url(r'^image/(\d+)',views.get_image_by_id,name ='image')
 ]
 
 if settings.DEBUG:
