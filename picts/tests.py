@@ -93,3 +93,33 @@ class TestLocation(TestCase):
         self.location.update_location(self.location.id, new_location)
         changed_location = Location.objects.filter(name='kericho')
         self.assertTrue(len(changed_location) > 0)
+        
+        # test get location
+    def test_delete_location(self):
+        self.location.delete_location()
+        location = Location.objects.all()
+        self.assertTrue(len(location) == 0)
+        
+    # test class category
+class CategoryTestClass(TestCase):
+    
+        # set up method
+    def setUp(self):
+        self.category = Category(name='home')
+        self.category.save_category()
+        
+        # test instances category
+    def test_instance(self):
+        self.assertTrue(isinstance(self.category, Category))
+        
+        # test save category
+    def test_save_category(self):
+        self.category.save_category()
+        categories = Category.objects.all()
+        self.assertTrue(len(categories) > 0)
+    
+        # test delete category
+    def test_delete_category(self):
+        self.category.delete_category()
+        category = Category.objects.all()
+        self.assertTrue(len(category) == 0)
