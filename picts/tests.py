@@ -50,3 +50,9 @@ class TestImage(TestCase):
         self.image_test.save_image()
         found_images = self.image_test.filter_by_location(location='moringa')
         self.assertTrue(len(found_images) == 1)
+        
+    # test search image by category
+    def test_search_image_by_category(self):
+        category = 'home'
+        found_img = self.image_test.search_by_category(category)
+        self.assertTrue(len(found_img) > 1)
