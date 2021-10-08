@@ -51,8 +51,26 @@ class TestImage(TestCase):
         found_images = self.image_test.filter_by_location(location='moringa')
         self.assertTrue(len(found_images) == 1)
         
-    # test search image by category
+        # test search image by category
     def test_search_image_by_category(self):
         category = 'home'
         found_img = self.image_test.search_by_category(category)
         self.assertTrue(len(found_img) > 1)
+        
+        # test delete method
+    def tearDown(self):
+        Image.objects.all().delete()
+        Location.objects.all().delete()
+        Category.objects.all().delete()
+        
+        # test class location
+class TestLocation(TestCase):
+    
+        # set up method
+    def setUp(self):
+        self.location = Location(name='Moringa')
+        self.location.save_location()
+        
+        # testing instance location
+    def test_instance(self):
+        self.assertTrue(isinstance(self.location, Location))
