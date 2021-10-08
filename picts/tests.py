@@ -38,3 +38,15 @@ class TestImage(TestCase):
         self.image_test.update_image(self.image_test.id, 'photos/test.jpg')
         changed_img = Image.objects.filter(image='photos/test.jpg')
         self.assertTrue(len(changed_img) > 0)
+        
+        # test get image
+    def test_get_image_by_id(self):
+        found_image = self.image_test.get_image_by_id(self.image_test.id)
+        image = Image.objects.filter(id=self.image_test.id)
+        self.assertTrue(found_image, image)
+        
+        # test search image location
+    def test_search_image_by_location(self):
+        self.image_test.save_image()
+        found_images = self.image_test.filter_by_location(location='moringa')
+        self.assertTrue(len(found_images) == 1)
