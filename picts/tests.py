@@ -86,3 +86,10 @@ class TestLocation(TestCase):
         self.location.save_location()
         locations = Location.get_locations()
         self.assertTrue(len(locations) > 1)
+        
+        # test get update location
+    def test_update_location(self):
+        new_location = 'kericho'
+        self.location.update_location(self.location.id, new_location)
+        changed_location = Location.objects.filter(name='kericho')
+        self.assertTrue(len(changed_location) > 0)
