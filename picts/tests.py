@@ -74,3 +74,15 @@ class TestLocation(TestCase):
         # testing instance location
     def test_instance(self):
         self.assertTrue(isinstance(self.location, Location))
+        
+        # save method location
+    def test_save_location(self):
+        self.location.save_location()
+        locations = Location.get_locations()
+        self.assertTrue(len(locations) > 0)
+        
+        # test get location
+    def test_get_locations(self):
+        self.location.save_location()
+        locations = Location.get_locations()
+        self.assertTrue(len(locations) > 1)
