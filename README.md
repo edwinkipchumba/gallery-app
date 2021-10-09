@@ -38,3 +38,5 @@ Admin roles:
 | To add a photo | Through Admin dashboard | Add and add categories and tag location of photo |
 | To edit a photo | Through Admin dashboard | Redirected to the photo form details |
 | To delete a photo | Through Admin dashboard | Click on photo and confirm by deleting button |
+| To search a photo | Enter text in search bar | Users can search by category |
+| To filter by location | click drop-down menu on navbar | Users can view photos by location |
