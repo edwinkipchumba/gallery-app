@@ -40,3 +40,9 @@ Admin roles:
 | To delete a photo | Through Admin dashboard | Click on photo and confirm by deleting button |
 | To search a photo | Enter text in search bar | Users can search by category |
 | To filter by location | click drop-down menu on navbar | Users can view photos by location |
+
+## Setup | Installation Requirements
+
+1. python3.8
+2. virtualenv
+3. requirements.txt
