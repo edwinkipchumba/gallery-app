@@ -46,3 +46,17 @@ Admin roles:
 1. python3.8
 2. virtualenv
 3. requirements.txt
+4. django
+
+## Cloning 
+
+* Open Terminal {Ctrl+Alt+T}
+
+```
+$git clone https://github.com/edwinkipchumba/gallery-app
+```
+```
+$cd gallery
+```
+
+* open based on the text editor you have.
