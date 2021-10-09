@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'picts',
     'bootstrap5',
+    'cloudinary',
 ]
 
 MIDDLEWARE = [
