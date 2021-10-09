@@ -33,3 +33,6 @@ Admin roles:
 | Behaviour | Input | Output |
 | :-----------------| :-----------------: | ------------------: |
 | Admin Authentication | On demand | Access Admin dashboard |
+| Display all photos | Home page | Clickable links to open any photos in a model |
+| Display single photos on click | On click | All details should be viewed |
+| To add a photo | Through Admin dashboard | Add and add categories and tag location of photo |
