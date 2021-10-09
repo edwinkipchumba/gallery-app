@@ -16,3 +16,12 @@ Users would like to:
 2. click on photo to display more details.
 3. search for photos by category.
 4. copy links to photos and share.
+
+## Admin Abilities
+
+These are the behaviours the application implements for use by admin.
+
+Admin roles:
+
+1. sign in to the gallery
+2. create new photo shocasing
