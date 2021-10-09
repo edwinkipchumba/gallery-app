@@ -9,7 +9,7 @@
   <div class="card-columns">
     {% for image in images %}
     <div class="card border-secondary">
-      <img class="card-img-top" class="img-responsive" src="{{image.gallery_image.url}}" data-target="#extraModal{{image.id}}" data-toggle="modal" size="100px200">
+      <img class="card-img-top" class="img-responsive" src="{{image.gallery_image.url}}" data-target="#extraModal{{image.id}}" data-toggle="modal">
     </div>
     {%endfor%}
   </div>
@@ -30,7 +30,7 @@
       </div>
 
       <div class="modal-body">
-        <img class="card-img-top" class="img-responsive" src="{{image.gallery_image.url}}" size="100px200">
+        <img class="card-img-top" class="img-responsive" src="{{image.gallery_image.url}}" width="300" height="300px">
         <p>About: {{image.description}}</p>
         <p>Location: {{image.location}}</p>
 
@@ -40,7 +40,7 @@
 
         <!-- The button used to copy the text -->
 
-        <button type="button" name="button" class="btn btn-info" value="https://emdeegallery.herokuapp.com{{image.gallery_image.url}}" onclick="copylink(this.value)">Copy Image Link</button>
+        <!-- <button type="button" name="button" class="btn btn-info" value="https://pic'sgallery.herokuapp.com{{image.gallery_image.url}}" onclick="copylink(this.value)">Copy Image Link</button> -->
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -51,7 +51,7 @@
 </div>
 <script>
 function copylink(value) {
-    console.log('hi yellow')
+    console.log('hi ')
     function handler(event){
         event.clipboardData.setData('text/plain', value);
         event.preventDefault();

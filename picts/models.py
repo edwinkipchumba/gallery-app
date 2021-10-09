@@ -1,43 +1,57 @@
 from django.db import models
-import datetime as dt
-from django.contrib.auth.models import User
-from tinymce.models import HTMLField
+from cloudinary.models import CloudinaryField
 # Create your models here.
-class categories(models.Model):
-    name=models.CharField(max_length=30)
-
-    def __str__(self):
-        return self.name
 
 class Location(models.Model):
-    name=models.CharField(max_length=30)
+    name = models.CharField(max_length =30)
 
     def __str__(self):
         return self.name
+    
+class Category(models.Model):
+    name = models.CharField(max_length =30)
 
+    def __str__(self):
+        return self.name
+    
 class Image(models.Model):
-    name= models.CharField(max_length=50)
-    description = HTMLField()
-    gallery_image = models.ImageField(upload_to='picha/', blank=True)
-    categories = models.ManyToManyField(categories)
-    location = models.ForeignKey(Location,on_delete=models.CASCADE,)
+    image = CloudinaryField('image')
+    image_name = models.CharField(max_length=40)
+    description = models.TextField()
+    date = models.DateTimeField(auto_now_add=True)
+    location = models.ForeignKey(Location, on_delete=models.CASCADE,default='')
+    category = models.ForeignKey(Category, on_delete=models.CASCADE,default='')
+
+
+
+    def __str__(self):
+        return self.image_name
+    
+    def save_image(self):
+        self.save()
 
     @classmethod
-    def all_images(self):
-
-        return Image.objects.all()
-
+    def search_by_category(cls,search_term):
+        image = cls.objects.filter(category__name__icontains=search_term)
+        return image
+        
+    def delete_image(self):
+        self.delete()
+    
     @classmethod
-    def search_by_category(cls,search_images):
-        images = Image.objects.filter(categories__name__icontains=search_images)
-        return images
-
+    def update_image(cls, id, value):
+        cls.objects.filter(id=id).update(image=value)
+        
     @classmethod
-    def view_location(cls,name):
-        location = cls.objects.filter(location=name)
-        return location
-
+    def get_image_by_id(cls, id):
+        image = cls.objects.filter(id=id).all()
+        return image
+    
     @classmethod
-    def view_category(cls,cat):
-        categories = cls.objects.filter(categories=cat)
-        return categories
+    def filter_by_location(cls, location):
+        img_location = Image.objects.filter(location__name=location).all()
+        return img_location
+
+    class Meta:
+        ordering = ['date']
+    
