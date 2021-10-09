@@ -1,0 +1,142 @@
+{% load static %}
+{% include "base.html" %}
+
+{% block styles %}
+
+<link rel="stylesheet" href="{% static 'css/main.css' %}">
+
+{% endblock %}
+
+
+{% block content %}
+<br>
+<div class="container-fluid">
+
+  
+
+  <!-- Jumbotron -->
+  <div class="card card-image" style="background-image:url('/static/photos/wood.jpg');background-position:center;"></div>
+    <div class="text-white text-center rgba-stylish-strong py-5 px-4">
+      <div class="py-5">
+
+        <!-- Content -->
+        
+        <h2 class="card-title h2 my-4 py-2">Welcome To The Pic's Gallery</h2>
+        <p class="mb-4 pb-2 px-md-5 mx-md-5">Where you can Add photos to different categories,
+        location and share at your own plesure!</p>
+
+
+      </div>
+    </div>
+  
+
+</div>
+<br>
+<div class="container">
+  
+  <div class="row">
+    <div class="col-md-5 col-sm-6 col-lg-6">
+      <form role="search" action="{% url 'searchPage' %}">
+        <div class="md-form my-0">
+          <input class="form-control" name="category" type="text"
+            placeholder="Search By Category">
+          <button type="submit" class="btn btn-sm btn-info">Search</button>
+        </div>
+      </form>
+    </div>
+    <div class="col-md-5 col-sm-6 col-lg-6">
+      <!-- Basic dropdown -->
+        <a class="btn btn-primary dropdown-toggle mr-4" type="button" data-toggle="dropdown" aria-haspopup="true"
+        aria-expanded="false">View Images By Location</a>
+
+        <div class="dropdown-menu dropdown-primary">
+        {% for items in location %}
+        <a class="dropdown-item" href="/location/{{ items.name }}">{{ items.name }}</a>
+        {% endfor %}
+        </div>
+               
+        
+    </div>
+
+    </div>
+  
+  <br>
+
+  <div class="row">
+    {% for items in images %}
+      
+    
+    <div id="images" class="col-xs-6 col-sm-3 col-md-4 col-lg-4">
+        <img style="margin-top: 10px;margin-bottom:10px;" class="img-fluid z-depth-1 img-thumbnail" src="{{ items.image.url }}" alt="{{ items.image_name }}" data-toggle="modal" data-target="#modal{{items.id}}">
+  </div>
+    {% endfor %}
+  </div>
+
+
+  {% for items in images %}
+
+    <!-- Grid column -->
+
+      <!--Modal: Name-->
+      <div class="modal fade" id="modal{{items.id}}" tabindex="-1" role="dialog"
+        aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+
+          <!--Content-->
+          <div class="modal-content">
+
+            <!--Body-->
+            <div class="modal-body mb-0 p-0">
+              <div class="embed-responsive embed-responsive-16by9
+                z-depth-1-half">
+
+
+                <img class="embed-responsive-item" src="{{ items.image.url }}"
+                  alt="{{ items.image_name }}" allowfullscreen>
+
+              </div>
+            </div>
+            <h3 class="embed-responsive-item text-center mr-4 mt-2" style="text-decoration: underline; color:black;">{{ items.image_name }}</h3>
+            <span class="mr-4 text-center"><h5>{{ items.description }}</h5></span>
+            <!--Footer-->
+            <div class="modal-footer justify-content-center">
+
+              <a type="button" class="btn-floating btn-sm btn-fb"><i class="fas
+                  fa-calendar-alt"></i> {{ items.date }}</a>
+              <a type="button" class="btn-floating btn-sm btn-tw"><i class="fas
+                  fa-fighter-jet"></i> {{ items.location }}</a>
+              <a type="button" class="btn-floating btn-sm btn-gplus"><i
+                  class="fas fa-grip-horizontal"></i> {{ items.category }}</a>
+              <div>
+                <button type="button" class="btn btn-outline-info btn-rounded btn-md ml-4" onclick="myFunction('{{items.id}}.url')">Copy Link</button>
+                <button type="button" class="btn btn-outline-primary btn-rounded btn-md ml-4" data-dismiss="modal">Close</button>
+              </div>
+
+              <div>
+                <input class="form-control input-lg" type="text" value="{{items.image.url}}" id="{{items.id}}.url">
+              </div>
+              
+
+            </div>
+
+          </div>
+          <!--/.Content-->
+
+        </div>
+      </div>
+      <!--Modal: Name-->
+
+  {% endfor %}
+</div>
+<br>
+
+
+<script>
+  function myFunction(element) {
+    var copyText = document.getElementById(element);
+    copyText.select();
+    copyText.setSelectionRange(0, 99999)
+    document.execCommand("copy");
+  }
+  </script>
+{% endblock %}

@@ -1,33 +1,82 @@
-{%extends 'base.html'%}
+{% load static %}
+{% include "base.html" %}
+
+{% block styles %}
+
+<link rel="stylesheet" href="{% static 'css/search.css' %}">
+
+{% endblock %}
+
 {% block content %}
-<br>
 <div class="container">
 
   <div class="row">
-
-    {% if images%}
-    <h2 class="capitalize">{{ images|length }} {{message}} images found...</h2>
+    {% if image %}
+      <h2>Found {{ image|length }} images in {{message}} category</h2>
     {% else %}
-    <h2> No images found {{message}}</h2>
+      <h2> Found 0 images for the search term {{message}}</h2>
     {% endif %}
 
   </div>
-  <hr>
-  <div class="row">
-    <div class="container">
-      <div class="card-columns">
-        {% if images %}
-        {% for image in images %}
-        <div class="card border-secondary">
-          <div class="card-header"><h4>{{image.name}}</h4></div>
-          <img class="card-img-top" class="img-responsive" src="{{image.gallery_image.url}}" size="50px50">
-        </div>
 
-        {%endfor%}
+  <br>
+  
+  {% if image %}
+
+  <h2 style="text-decoration: underline;">Images In {{message}}</h2>
+
+  {% for items in image %}
+
+  <div class="row">
+    <div class="col-sm-9 col-md-10 col-lg-10">
+      <!-- News jumbotron -->
+<div class="jumbotron text-center hoverable p-4">
+
+  <!-- Grid row -->
+  <div class="row">
+
+    <!-- Grid column -->
+    <div class="col-md-4 offset-md-1 mx-3 my-3">
+
+      <!-- Featured image -->
+      <div class="view overlay">
+        <img src="{{ items.image.url }}" class="img-fluid" alt="{{ items.image_name }}">
+        <a>
+          <div class="mask rgba-white-slight"></div>
+        </a>
       </div>
 
     </div>
-    {% endif %}
+    <!-- Grid column -->
+
+    <!-- Grid column -->
+    <div class="col-md-7 text-md-left ml-3 mt-3">
+
+      <!-- Excerpt -->
+      <a href="#!" class="teal-text">
+        <h6 class="h6 pb-1"><i class="fas fa-grip-horizontal"></i> {{ items.category }}</h6>
+      </a>
+
+      <h4 class="h4 mb-4">{{ items.image_name }}</h4>
+
+      <p class="font-weight-normal">{{ items.description }}</p>
+      <p class="font-weight-normal">Location <a><strong>{{ items.location }}</strong></a>, {{ items.date }}</p>
+
+    </div>
+    <!-- Grid column -->
+
   </div>
+  <!-- Grid row -->
+
+</div>
+<!-- News jumbotron -->
+    </div>
+  </div>
+    
+  {% endfor %}
+    
+  {% endif %}
+    
+
 </div>
 {% endblock %}

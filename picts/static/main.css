@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,100&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap');
+
+body{
+    /* background-color: rgb(28, 184, 111); */
+    background-color: #100B00;
+    
+}
+
+#txt{
+  font-size: 30px;
+  font-family: 'Roboto', sans-serif;
+}
+
+p{
+  font-size: 24px;
+  font-family: 'Lato', sans-serif;
+}
+
+#home{
+  font-weight: bold;
+}
+#loc{
+  font-weight: bold;
+}
+  .row {margin: 0 -5px;}
+  
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  
+.dropdown-item:hover{
+    background-color: #655F4F;
+    color: white;
+}
+  
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.img-fluid{
+  width:  300px;
+  height: 300px;
+  object-fit: cover;
+}
+
+@media screen and (max-width: 600px) {
+  .img-fluid{
+    width: 200px;
+    height: 200px;
+  }
+  #images{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+  }
+  
+}
