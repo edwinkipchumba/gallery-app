@@ -23,5 +23,13 @@ These are the behaviours the application implements for use by admin.
 
 Admin roles:
 
-1. sign in to the gallery
-2. create new photo shocasing
+1. sign in to the gallery.
+2. create new photo shocasing.
+3. delete photos.
+4. update the gallery.
+
+## Behaviour Driven Development (BDD)
+
+| Behaviour | Input | Output |
+| :-----------------| :-----------------: | ------------------: |
+| Admin Authentication | On demand | Access Admin dashboard |
