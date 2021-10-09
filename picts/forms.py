@@ -16,3 +16,11 @@ CATEGORIES =(
     ("6", "Nature"), 
     ("7", "Sports"), 
 ) 
+
+# class forms
+class ImagesForm(forms.Form):
+    image = forms.ImageField(required=True) 
+    imagename = forms.CharField(required=True)
+    description = forms.CharField(required=True)
+    locaton = forms.CharField(required=True)
+    category = forms.ChoiceField(choices=CATEGORIES, required=True)
