@@ -60,3 +60,12 @@ $cd gallery
 ```
 
 * open based on the text editor you have.
+
+
+## Technology used
+
+* django
+* HTML5
+* css
+* Bootsrap5
+* python3.8
