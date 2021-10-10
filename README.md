@@ -73,20 +73,19 @@ $cd gallery
 
 * Creating the virtual environment
 
-        $ python3 -m venv --without-pip virtual
+ $ python3 -m venv --without-pip virtual
 
-        $ source virtual/bin/activate
-        
-        $ curl https://bootstrap.pypa.io/get-pip.py | python
+$ source virtual/bin/activate
+
+$ curl https://bootstrap.pypa.io/get-pip.py | python
 
 * Installing Django and other Modules
 
-        $ see Requirements.txt
+$ see Requirements.txt
 
 * To run the application, in your terminal:
 
-        $ python3 manage.py runserver
-
+$ python3 manage.py runserver
 
 ## Technology used
 
@@ -104,7 +103,10 @@ If you find a bug, kindly feel free to comment an issue here and inlcude their c
 
  Feel free to contact me incase of any issue or questions, ideas and concern towards the same.
 
- * Contact Number:+254728357619
- * E-Mail: edwinkolem5@gmail.com.
+* Contact Number:+254728357619
+  
+* E-Mail: edwinkolem5@gmail.com.
 
 ## License
+
+https://github.com/edwinkipchumba/gallery-app/blob/master/LICENSE
