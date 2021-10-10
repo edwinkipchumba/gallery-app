@@ -8,7 +8,10 @@ This is a web application that allows users to view photos stored in galleries b
 
 ## Screenshot images
 
-<img src="./app/static/image/pics.png">
+<img src="static/../picts/static/img/home1.png">
+
+<img src="static/../picts/static/img/home.png">
+<img src="static/../picts/static/img/Screenshot%20from%202021-10-10%2022-16-50.png">
 
 ## Live page
 
